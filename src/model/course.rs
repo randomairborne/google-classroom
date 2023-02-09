@@ -2,7 +2,7 @@ use serde::{Deserialize, Serialize};
 
 use super::{GradeCategory, DriveFolder};
 
-/// A Course in Classroom.
+/// Modify a Classroom course.
 #[derive(Serialize, Deserialize, Debug, Hash, PartialEq, Eq)]
 #[serde(rename_all = "camelCase")]
 pub struct CourseCreate {
@@ -28,27 +28,10 @@ pub struct CourseCreate {
     gradebook_settings: GradebookSettings,
 }
 
-/// A Course in Classroom.
+/// Modify a Classroom course.
 #[derive(Serialize, Deserialize, Debug, Hash, PartialEq, Eq)]
 #[serde(rename_all = "camelCase")]
 pub struct CourseModify {
-    name: String,
-    section: String,
-    description_heading: String,
-    description: String,
-    room: String,
-    owner_id: String,
-    creation_time: String,
-    update_time: String,
-    enrollment_code: String,
-    course_state: CourseState,
-    alternate_link: String,
-    teacher_group_email: String,
-    course_group_email: String,
-    teacher_folder: DriveFolder,
-    guardians_enabled: bool,
-    calendar_id: String,
-    gradebook_settings: GradebookSettings,
 }
 
 /// A Course in Classroom.
@@ -56,13 +39,12 @@ pub struct CourseModify {
 #[serde(rename_all = "camelCase")]
 pub struct Course {
     /// Identifier for this course assigned by Classroom.
-    /// When creating a course, you may optionally set this identifier to an alias string in the request to create a corresponding alias. The id is still assigned by Classroom and cannot be updated after the course is created.
-    id: Option<String>,
+    id: String,
     name: String,
-    section: String,
-    description_heading: String,
-    description: String,
-    room: String,
+    section: Option<String>,
+    description_heading: Option<String>,
+    description: Option<String>,
+    room: Option<String>,
     owner_id: String,
     creation_time: String,
     update_time: String,
