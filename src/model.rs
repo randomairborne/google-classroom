@@ -175,3 +175,36 @@ pub enum DriveFileShareMode {
     #[serde(rename = "STUDENT_COPY")]
     Copy
 }
+
+/// A Course in Classroom.
+#[derive(Serialize, Deserialize, Debug, Hash, PartialEq, Eq)]
+pub struct Course {
+    id: String,
+  name: String,
+  section: String,
+  descriptionHeading: String,
+  description: String,
+  room: String,
+  #[serde(rename = "ownerId")]
+  owner_id: String,
+  creationTime: String,
+  updateTime: String,
+  enrollmentCode: String,
+  courseState: CourseState,
+  alternateLink: String,
+  teacherGroupEmail: String,
+  courseGroupEmail: String,
+  teacherFolder: {
+    object (DriveFolder)
+  },
+  courseMaterialSets: [
+    {
+      object (CourseMaterialSet)
+    }
+  ],
+  guardiansEnabled: boolean,
+  calendarId: String,
+  gradebookSettings: {
+    object (GradebookSettings)
+  }
+}
